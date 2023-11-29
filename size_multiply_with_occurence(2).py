@@ -22,7 +22,7 @@ def find_max(t,z):
                 max_len = max(max_len,len(t[i:j])*z.count(t[i:j]))
     return max_len
 
-find_max("acldm1labcdhsnd","shabcdacasklksjabcdfueuabcdfhsndsabcdmdabcdfa")
+print(find_max("acldm1labcdhsnd","shabcdacasklksjabcdfueuabcdfhsndsabcdmdabcdfa"))
 
 if __name__ == '__main__':
     find_max("acldm1labcdhsnd","shabcdacasklksjabcdfueuabcdfhsndsabcdmdabcdfa")

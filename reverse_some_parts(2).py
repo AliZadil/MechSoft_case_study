@@ -22,7 +22,7 @@ def fix_text(mystr):
     correct_words = []
 
     for word in words:
-        if word.startswith('(' and word.endswith(')')):
+        if word.startswith('(') and word.endswith(')'):
             correct_words.append(word[1:-1])
         else:
             correct_words.append(word[::-1])
@@ -30,6 +30,8 @@ def fix_text(mystr):
     correct_mystr = ' '.join(correct_words)
 
     return correct_mystr
+
+print(fix_text(INPUT))
 
 if __name__ == "__main__":
     print("Correct!" if fix_text(INPUT) == CORRECT_ANSWER else "Sorry, it does not match with the correct answer.")
