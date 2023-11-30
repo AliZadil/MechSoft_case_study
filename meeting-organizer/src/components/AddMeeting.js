@@ -31,7 +31,7 @@ const AddMeeting = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/meetings', {  
+      const response = await fetch('http://localhost:5000/meetings', {  
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -107,6 +107,3 @@ const AddMeeting = () => {
 };
 
 export default AddMeeting;
-
-
-      

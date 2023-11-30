@@ -15,3 +15,4 @@ npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
 
 for running the app:
 npm start
+python app.py

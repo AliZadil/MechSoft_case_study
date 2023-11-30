@@ -1,34 +1,35 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS
 from datetime import datetime
+from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/meetings/*": {"origins": "*"}})
 
-# Temporary storage for meetings
 meetings = []
+current_id = 1
 
 @app.route('/meetings', methods=['GET'])
 def get_meetings():
-    # You might want to sort meetings by date here
     sorted_meetings = sorted(meetings, key=lambda x: datetime.strptime(x['date'], '%Y-%m-%d'))
     return jsonify(sorted_meetings)
 
 @app.route('/meetings', methods=['POST'])
 def add_meeting():
+    global current_id
     meeting_data = request.json
 
-    # Basic validation (e.g., check for required fields)
-    if 'topic' in meeting_data and 'date' in meeting_data:
+    # Enhanced validation
+    required_fields = ['topic', 'date', 'startTime', 'endTime', 'participants']
+    if all(field in meeting_data for field in required_fields):
+        meeting_data['id'] = current_id
+        current_id += 1
         meetings.append(meeting_data)
         return jsonify(meeting_data), 201
     else:
         return jsonify({"error": "Missing required fields"}), 400
 
-# Optional: Endpoint for editing a meeting
 @app.route('/meetings/<int:meeting_id>', methods=['PUT'])
 def edit_meeting(meeting_id):
-    global meetings
     meeting_data = request.json
     for i, meeting in enumerate(meetings):
         if meeting['id'] == meeting_id:
