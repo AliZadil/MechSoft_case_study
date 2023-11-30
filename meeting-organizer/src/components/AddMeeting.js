@@ -31,7 +31,7 @@ const AddMeeting = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/meetings', {  // Adjust the URL as per your Flask API
+      const response = await fetch('http://localhost:3000/meetings', {  
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const AddMeeting = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      navigate('/'); // Navigate back to the list of meetings
+      navigate('/'); 
     } catch (error) {
       console.error('Error during the POST request:', error);
       setError('Failed to add the meeting. Please try again.');
