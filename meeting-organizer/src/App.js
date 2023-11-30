@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {
+  ChakraProvider,
+  Box,
+  VStack,
+  Grid,
+  theme,
+} from '@chakra-ui/react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+
+import MeetingList from './components/MeetingList';
+import AddMeeting from './components/AddMeeting';
+import EditMeeting from './components/EditMeeting'; // Assuming you have this component
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider theme={theme}>
+      <Router>
+        <Box textAlign="center" fontSize="xl">
+          <Grid minH="100vh" p={3}>
+            <VStack spacing={8}>
+              <nav>
+                <Link to="/">Home</Link> |{" "}
+                <Link to="/add-meeting">Add Meeting</Link>
+              </nav>
+              <Routes>
+                <Route path="/" element={<MeetingList />} />
+                <Route path="/add-meeting" element={<AddMeeting />} />
+                <Route path="/edit-meeting/:id" element={<EditMeeting />} />
+              </Routes>
+            </VStack>
+          </Grid>
+        </Box>
+      </Router>
+    </ChakraProvider>
   );
 }
 
