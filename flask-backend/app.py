@@ -13,6 +13,14 @@ def get_meetings():
     sorted_meetings = sorted(meetings, key=lambda x: datetime.strptime(x['date'], '%Y-%m-%d'))
     return jsonify(sorted_meetings)
 
+@app.route('/meetings/<int:meeting_id>', methods=['GET'])
+def get_meeting(meeting_id):
+    for meeting in meetings:
+        if meeting['id'] == meeting_id:
+            return jsonify(meeting), 200
+    return jsonify({"error": "Meeting not found"}), 404
+
+
 @app.route('/meetings', methods=['POST'])
 def add_meeting():
     global current_id

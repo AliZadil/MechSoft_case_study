@@ -7,7 +7,8 @@ const AddMeeting = () => {
     date: '',
     startTime: '',
     endTime: '',
-    participants: ''
+    participants: '',
+    id: ''
   });
   const [error, setError] = useState('');
   const navigate = useNavigate();
