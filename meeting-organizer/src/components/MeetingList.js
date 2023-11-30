@@ -7,10 +7,9 @@ const MeetingList = () => {
   useEffect(() => {
     const fetchMeetings = async () => {
       try {
-        const response = await fetch('http://localhost:5000/meetings'); // Adjust URL as per your Flask API
+        const response = await fetch('http://localhost:5000/meetings');
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
-        // Sorting meetings by date
         setMeetings(data.sort((a, b) => new Date(a.date) - new Date(b.date)));
       } catch (error) {
         console.error('Fetch error:', error);

@@ -18,7 +18,6 @@ def add_meeting():
     global current_id
     meeting_data = request.json
 
-    # Enhanced validation
     required_fields = ['topic', 'date', 'startTime', 'endTime', 'participants']
     if all(field in meeting_data for field in required_fields):
         meeting_data['id'] = current_id
