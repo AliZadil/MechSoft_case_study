@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 import MeetingList from './components/MeetingList';
 import AddMeeting from './components/AddMeeting';
-import EditMeeting from './components/EditMeeting'; // Assuming you have this component
+import EditMeeting from './components/EditMeeting';
 
 function App() {
   return (
