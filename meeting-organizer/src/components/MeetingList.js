@@ -7,7 +7,7 @@ const MeetingList = () => {
   useEffect(() => {
     const fetchMeetings = async () => {
       try {
-        const response = await fetch('http://localhost:5000/meetings');
+        const response = await fetch('http://127.0.0.1:5000/meetings');
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
         setMeetings(data.sort((a, b) => new Date(a.date) - new Date(b.date)));
