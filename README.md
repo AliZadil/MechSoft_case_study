@@ -15,5 +15,6 @@ pip install flask flask_cors
 npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
 
 for running the app:
-npm start
-python app.py
+frontend: npm start
+backend: source venv/bin/activate
+python3 app.py
