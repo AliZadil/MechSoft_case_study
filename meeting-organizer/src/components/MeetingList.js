@@ -5,6 +5,8 @@ const MeetingList = () => {
   const [meetings, setMeetings] = useState([]);
 
   useEffect(() => {
+    fetchMeetings();
+  }, []);
     const fetchMeetings = async () => {
       try {
         const response = await fetch('http://127.0.0.1:5000/meetings');
@@ -16,8 +18,18 @@ const MeetingList = () => {
       }
     };
 
-    fetchMeetings();
-  }, []);
+  const deleteMeeting = async (MeetingId) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:5000/meetings/${MeetingId}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) throw new Error('Network response was not ok');
+      fetchMeetings();
+    } catch (error) {
+      console.error('Delete error:', error);
+    }
+  };
+
 
   return (
     <div>
@@ -34,6 +46,8 @@ const MeetingList = () => {
                 <strong>Participants:</strong> {meeting.participants}
               </div>
               <Link to={`/edit-meeting/${meeting.id}`}>Edit</Link>
+              {" | "}
+              <button onClick={() => deleteMeeting(meeting.id)}>Delete</button>
             </li>
           ))}
         </ul>

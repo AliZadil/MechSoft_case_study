@@ -44,5 +44,15 @@ def edit_meeting(meeting_id):
             return jsonify(meeting_data), 200
     return jsonify({"error": "Meeting not found"}), 404
 
+@app.route('/meetings/<int:meeting_id>', methods=['DELETE'])
+def delete_meeting(meeting_id):
+    global meetings
+    meetings = [meeting for meeting in meetings if meeting['id'] != meeting_id]
+
+    if any(meeting['id'] == meeting_id for meeting in meetings):
+        return jsonify({"error": "Meeting not deleted"}), 500
+    else:
+        return jsonify({"message": "Meeting deleted"}), 200
+
 if __name__ == '__main__':
     app.run(debug=True)
